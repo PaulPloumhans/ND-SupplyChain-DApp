@@ -332,6 +332,8 @@ App = {
                 if (!err){
                     console.log('Event capture message: ', log);
                     $("#ftc-events").append('<li>' + log.event + ' - ' + log.transactionHash + '</li>');
+                } else {
+                    console.log(err.message);
                 }                                    
             });            
         }).catch(function(err) {
