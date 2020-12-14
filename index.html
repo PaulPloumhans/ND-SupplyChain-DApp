@@ -16,30 +16,84 @@
         <p style="text-align: center;">Prove the authenticity of coffee using the Ethereum blockchain.</p>
     </div>
 
+     
+
     <div id="ftc-harvest">
         <h2>Product Overview</h2>
+        <!-- Section 1 -->
+        <!-- Convention: data ids for buttons is section number (starting at 1 x 100 + button number) -->   
         <div class="form-group">
-            SKU
-            <br>
-            <input class="input-field" type="number" id="sku" name="sku" value=1><br>
+            <!-- IDs and names here all start with fetch- -->
+            <!-- Fetch all data based on UPC -->
             UPC
             <br>
-            <input type="number" id="upc" name="upc" value=1><br>
-            Current Owner ID
+            <input type="number" id="fetch-upc" name="fetch-upc" value=1><br>
+            <button class="btn-read" id="fetch-button-read" type="button" data-id="101">Fetch Data</button>
             <br>
-            <input type="text" id="ownerID" name="ownerID" value="0x963865f57804b38459dd4b2da2f760211a200438" size="50"><br>
-            <div class=button-div>
-                <button class="btn-fetchOne" id="button" type="button" data-id="9">Fetch Data 1</button>
-                <button class="btn-fetchTwo" id="button" type="button" data-id="10">Fetch Data 2</button>
-            </div>
+            <table class=fetch-table>
+                <tr>
+                    <td class=parameter>SKU</td>
+                    <td id="fetch-SKU"></td>
+                </tr>
+                <tr>
+                    <td>Current state</td>
+                    <td id="fetch-state"></td>
+                </tr>                
+                <tr>
+                    <td>Origin Farm Name</td>
+                    <td id="fetch-originFarmName"></td>
+                </tr>
+                <tr>
+                    <td>Origin Farm Information</td>
+                    <td id="fetch-originFarmInformation"></td>
+                </tr>
+                <tr>
+                    <td>Origin Farm Latitude</td>
+                    <td id="fetch-originFarmLatitude"></td>
+                </tr>
+                <tr>
+                    <td>Origin Farm Longitude</td>
+                    <td id="fetch-originFarmLongitude"></td>
+                </tr>
+                <tr>
+                    <td>Product Notes</td>
+                    <td id="fetch-productNotes"></td>
+                </tr>
+                <tr>
+                    <td>Product Price</td>
+                    <td id="fetch-productPrice"></td>
+                </tr>
+                <tr>
+                    <td>Current Owner ID</td>
+                    <td id="fetch-ownerID"> </td>
+                </tr>
+                <tr>
+                    <td>Origin Farmer ID</td>
+                    <td id="fetch-originFarmerID"></td>
+                </tr>
+                <tr>
+                    <td>Distributor ID</td>
+                    <td id="fetch-distributorID"></td>
+                </tr>
+                <tr>
+                    <td>Retailer ID</td>
+                    <td id="fetch-retailerID"></td>
+                </tr>
+                <tr>
+                    <td>Consumer ID</td>
+                    <td id="fetch-consumerID"></td>
+                </tr>                
+            </table>
+            
         </div>
         <div class=form-break></div>
-        <h2>Farm Details</h2>
-        <div class="form-group">
-            Farmer ID
+        <h2>Enter Product Information and select Supply Chain actions</h2>
+        <!-- Section 2 -->
+        <!-- Convention: data ids for buttons is section number (starting at 2 x 100 + button number) -->   
+        <div class="form-group">            
+            UPC
             <br>
-            <input type="text" id="originFarmerID" name="originFarmerID" value="0x99c289eb2aacec289631a5ddf62cf27a63d4494f"
-                size="50"><br>
+            <input type="number" id="upc" name="upc" value=1><br>            
             Farm Name
             <br>
             <input type="text" id="originFarmName" name="originFarmName" value="John Doe"><br>
@@ -52,42 +106,24 @@
             Farm Longitude
             <br>
             <input type="text" id="originFarmLongitude" name="originFarmLongitude" value="144.341490"><br>
-            <br>
-            <button class="btn-harvest" id="button" type="button" data-id="1">Harvest</button>
-            <button class="btn-process" id="button" type="button" data-id="2">Process</button>
-            <button class="btn-pack" id="button" type="button" data-id="3">Pack</button>
-            <button class="btn-forsale" id="button" type="button" data-id="4">ForSale</button>
-        </div>
-        <div class=form-break></div>
-        <h2>Product Details</h2>
-        <div class="form-group">
             Product Notes
             <br>
             <input type="text" id="productNotes" name="productNotes" value="Best beans for Espresso" size="60"><br>
+            <br>
+            <button class="btn-write" id="button" type="button" data-id="201">Harvest</button>
+            <button class="btn-write" id="button" type="button" data-id="202">Process</button>
+            <button class="btn-write" id="button" type="button" data-id="203">Pack</button>
+            <br>
             Product Price
             <br>
             <input type="number" id="productPrice" name="productPrice" value=1>ETH<br>
-            Distributor ID
+            <button class="btn-write" id="button" type="button" data-id="204">ForSale</button>
             <br>
-            <input type="text" id="distributorID" name="distributorID" value="0xf1b1bcd24dad92303dd9fe78be639f7bcf9c238d"
-                size="50">
-            <br>
-            Retailer ID
-            <br>
-            <input type="text" id="retailerID" name="retailerID" value="0x0fb2bfefd526966c87efa19f6693d50971763fc2"
-                size="50"><br>
-            Distributor ID
-            <br>
-            <input type="text" id="consumerID" name="consumerID" value="0x5d777e9127b28fb119e81a6304278a0a21bef1c4"
-                size="50"><br>
-            <br>
-            <button class="btn-buy" id="button" type="button" data-id="5">Buy</button>
-            <button class="btn-ship" id="button" type="button" data-id="6">Ship</button>
-            <button class="btn-receive" id="button" type="button" data-id="7">Receive</button>
-            <button class="btn-purchase" id="button" type="button" data-id="8">Purchase</button>
-        </div>
-        <div class=form-break></div>
-        <hr>
+            <button class="btn-write" id="button" type="button" data-id="205">Buy</button>
+            <button class="btn-write" id="button" type="button" data-id="206">Ship</button>
+            <button class="btn-write" id="button" type="button" data-id="207">Receive</button>
+            <button class="btn-write" id="button" type="button" data-id="208">Purchase</button>
+        </div>                
     </div>
 
     <h2>Transaction History<span id="ftc-history"></span></h2>

@@ -7,8 +7,8 @@ import "../coffeeaccesscontrol/RetailerRole.sol";
 import "../coffeecore/Ownable.sol";
 
 // Define a contract 'Supplychain'
+//
 contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
-
     // Define a variable called 'upc' for Universal Product Code (UPC)
     uint  upc;
     // Define a variable called 'sku' for Stock Keeping Unit (SKU)
@@ -17,18 +17,20 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
     mapping (uint => Item) items;
     // Define a public mapping 'itemsHistory' that maps the UPC to an array of TxHash, 
     // that track its journey through the supply chain -- to be sent from DApp.
-    mapping (uint => string[]) itemsHistory;
+    // To be dis-regarded as per https://medium.com/@andresaaap/architect-a-blockchain-supply-chain-solution-part-b-project-faq-udacity-blockchain-da86496fce55
+    // mapping (uint => string[]) itemsHistory;
     
     // Define enum 'State' with the following values:
     enum State { 
-        Harvested,  // 0
-        Processed,  // 1
-        Packed,     // 2
-        ForSale,    // 3
-        Sold,       // 4
-        Shipped,    // 5
-        Received,   // 6
-        Purchased   // 7
+        Uninitialized, // 0 - this is also used to check that an entry (key) in items has not been set
+        Harvested,  // 1
+        Processed,  // 2
+        Packed,     // 3
+        ForSale,    // 4
+        Sold,       // 5
+        Shipped,    // 6
+        Received,   // 7
+        Purchased   // 8
     }
 
     State constant defaultState = State.Harvested;
@@ -89,6 +91,12 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
         // We need to make this conversion to be able to use transfer() function to transfer ethers
         address payable ownerAddressPayable = _make_payable(msg.sender); 
         ownerAddressPayable.transfer(amountToReturn);
+    }
+
+    // Define a modifier that checks if an item.state of a upc is Uninitialized
+    modifier uninitialized(uint _upc) {
+        require(items[_upc].itemState == State.Uninitialized);
+        _;
     }
 
     // Define a modifier that checks if an item.state of a upc is Harvested
@@ -170,9 +178,12 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
     )
         public
         onlyFarmer
+        // check that _upc is uninitialized
+        uninitialized(_upc)
     {
         // Add the new item as part of Harvest
-        Item memory new_item ;
+        //Item memory new_item ;
+        Item memory new_item = items[_upc];
         new_item.sku = sku ;
         new_item.upc = _upc ;
         new_item.ownerID = msg.sender ;

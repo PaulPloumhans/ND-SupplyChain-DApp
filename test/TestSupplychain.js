@@ -34,7 +34,7 @@ contract('SupplyChain', async function(accounts) {
     ///(8) 0xe07b5ee5f738b2f87f88b99aac9c64ff1e0c7917
     ///(9) 0xbd3ff2e3aded055244d66544c9c059fa0851da44
 
-    console.log("ganache-cli accounts used here...");
+    //console.log("ganache-cli accounts used here...");
     console.log("Contract Owner: accounts[0] ", accounts[0]);
     console.log("Farmer: accounts[1] ", accounts[1]);
     console.log("Distributor: accounts[2] ", accounts[2]);
@@ -62,7 +62,7 @@ contract('SupplyChain', async function(accounts) {
         // Mark an item as Harvested by calling function harvestItem()
         await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation,
             originFarmLatitude, originFarmLongitude, productNotes, {from: originFarmerID});
-
+        
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
@@ -76,7 +76,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');
-        assert.equal(resultBufferTwo[5], 0, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 1, 'Error: Invalid item State');
         assert.equal(eventEmitted, true, 'Invalid event emitted');   
 
     });   
@@ -112,7 +112,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');        
-        assert.equal(resultBufferTwo[5], 1, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 2, 'Error: Invalid item State');
         assert.equal(eventEmitted, true, 'Invalid event emitted'); 
     });   
 
@@ -147,7 +147,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');        
-        assert.equal(resultBufferTwo[5], 2, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 3, 'Error: Invalid item State');
         assert.equal(eventEmitted, true, 'Invalid event emitted'); 
     })    
 
@@ -182,7 +182,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');        
-        assert.equal(resultBufferTwo[5], 3, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 4, 'Error: Invalid item State');
         assert.equal(eventEmitted, true, 'Invalid event emitted'); 
     })    
 
@@ -239,7 +239,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');        
-        assert.equal(resultBufferTwo[5], 4, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 5, 'Error: Invalid item State');
         assert.equal(resultBufferTwo[6], distributorID, 'Error: Missing or Invalid distributorID');
         assert.equal(eventEmitted, true, 'Invalid event emitted'); 
         assert.equal(costDistributorID, web3.utils.toWei("1", "ether"), 'Incorrect cost to distributorID');
@@ -277,7 +277,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');        
-        assert.equal(resultBufferTwo[5], 5, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 6, 'Error: Invalid item State');
         assert.equal(resultBufferTwo[6], distributorID, 'Error: Missing or Invalid distributorID');
         assert.equal(eventEmitted, true, 'Invalid event emitted');  
     })    
@@ -316,7 +316,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');        
-        assert.equal(resultBufferTwo[5], 6, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 7, 'Error: Invalid item State');
         assert.equal(resultBufferTwo[6], distributorID, 'Error: Missing or Invalid distributorID');
         assert.equal(resultBufferTwo[7], retailerID, 'Error: Missing or Invalid retailerID');
         assert.equal(eventEmitted, true, 'Invalid event emitted');        
@@ -356,7 +356,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude');
         assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');        
-        assert.equal(resultBufferTwo[5], 7, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 8, 'Error: Invalid item State');
         assert.equal(resultBufferTwo[6], distributorID, 'Error: Missing or Invalid distributorID');
         assert.equal(resultBufferTwo[7], retailerID, 'Error: Missing or Invalid retailerID');
         assert.equal(resultBufferTwo[8], consumerID, 'Error: Missing or Invalid consumerID');
@@ -395,7 +395,7 @@ contract('SupplyChain', async function(accounts) {
         assert.equal(resultBufferTwo[2], productID, 'Error: Missing or Invalid productID');
         assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes');
         assert.equal(resultBufferTwo[4], productPrice, 'Error: Missing or Invalid productPrice');
-        assert.equal(resultBufferTwo[5], 7, 'Error: Invalid item State');
+        assert.equal(resultBufferTwo[5], 8, 'Error: Invalid item State');
         assert.equal(resultBufferTwo[6], distributorID, 'Error: Missing or Invalid distributorID');
         assert.equal(resultBufferTwo[7], retailerID, 'Error: Missing or Invalid retailerID');
         assert.equal(resultBufferTwo[8], consumerID, 'Error: Missing or Invalid consumerID'); 
