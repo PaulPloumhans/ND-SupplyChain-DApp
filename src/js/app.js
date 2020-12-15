@@ -95,7 +95,7 @@ App = {
                 console.log('Error:',err);
                 return;
             }
-            console.log('getMetamaskID:',res);
+            //console.log('getMetamaskID:',res);
             App.metamaskAccountID = res[0];
 
         })
@@ -107,7 +107,7 @@ App = {
         
         /// JSONfy the smart contracts
         $.getJSON(jsonSupplyChain, function(data) {
-            console.log('data',data);
+            //console.log('data',data);
             var SupplyChainArtifact = data;
             App.contracts.SupplyChain = TruffleContract(SupplyChainArtifact);
             App.contracts.SupplyChain.setProvider(App.web3Provider);
@@ -316,39 +316,17 @@ App = {
         ///event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
         App.fetchUpc = $('#fetch-upc').val();
-        console.log('fetchItem');
-        console.log('fetchUpc',App.fetchUpc);
-
+        
         App.contracts.SupplyChain.deployed().then(function(instance) {
-            console.log('Calling instance.fetchItemBufferOne on fetchUpc',App.fetchUpc);
             return instance.fetchItemBufferOne.call(App.fetchUpc);
         }).then(function(result) {
-            //$("#ftc-item").text(result);
-            console.log('fetchItemBufferOne', result);
-
-            console.log('sku', result[0]);
-            console.log('upc', result[1]);
-            console.log('ownerID', result[2]);
-            console.log('originFarmerID', result[3]);
-            const itemSKU = parseInt(result[0]) ;
-            //if(itemSKU!==0){
-            if(true){
-                $('#fetch-SKU').html(parseInt(result[0]));            
-                $('#fetch-originFarmName').html(result[4]);
-                $('#fetch-originFarmInformation').html(result[5]);
-                $('#fetch-originFarmLatitude').html(result[6]);
-                $('#fetch-originFarmLongitude').html(result[7]);
-                $('#fetch-ownerID').html(result[2]);
-                $('#fetch-originFarmerID').html(result[3]);
-            }else{
-                $('#fetch-SKU').html("");            
-                $('#fetch-originFarmName').html("");
-                $('#fetch-originFarmInformation').html("");
-                $('#fetch-originFarmLatitude').html("");
-                $('#fetch-originFarmLongitude').html("");
-                $('#fetch-ownerID').html("");
-                $('#fetch-originFarmerID').html("");
-            }
+            $('#fetch-SKU').html(parseInt(result[0]));            
+            $('#fetch-originFarmName').html(result[4]);
+            $('#fetch-originFarmInformation').html(result[5]);
+            $('#fetch-originFarmLatitude').html(result[6]);
+            $('#fetch-originFarmLongitude').html(result[7]);
+            $('#fetch-ownerID').html(result[2]);
+            $('#fetch-originFarmerID').html(result[3]);            
         }).catch(function(err) {
             console.log('Error:', err.message);
         });
@@ -357,33 +335,19 @@ App = {
             console.log('Calling instance.fetchItemBufferOne on fetchUpc',App.fetchUpc);
             return instance.fetchItemBufferTwo.call(App.fetchUpc);
         }).then(function(result){
-            console.log('fetchItemBufferTwo', result);
-            const itemSKU = parseInt(result[0]) ;
-            if(true){
-            //if(itemSKU!==0){
-                $('#fetch-state').html(App.stateName(parseInt(result[5])));
-                $('#fetch-productNotes').html(result[3]);
-                $('#fetch-productPrice').html(parseFloat(result[4]));
-                $('#fetch-distributorID').html(result[6]);
-                $('#fetch-retailerID').html(result[7]);
-                $('#fetch-consumerID').html(result[8]);
-            }else{
-                $('#fetch-state').html("");
-                $('#fetch-productNotes').html("");
-                $('#fetch-productPrice').html("");
-                $('#fetch-distributorID').html("");
-                $('#fetch-retailerID').html("");
-                $('#fetch-consumerID').html("");
-            }
+            console.log('fetchItemBufferTwo', result);            
+            $('#fetch-state').html(App.stateName(parseInt(result[5])));
+            $('#fetch-productNotes').html(result[3]);
+            $('#fetch-productPrice').html(parseFloat(result[4]));
+            $('#fetch-distributorID').html(result[6]);
+            $('#fetch-retailerID').html(result[7]);
+            $('#fetch-consumerID').html(result[8]);            
         }).catch(function(err) {
             console.log('Error:', err.message);
         });
     },
 
     fetchItemBufferOne: function () {
-    ///   event.preventDefault();
-    ///    var processId = parseInt($(event.target).data('id'));
-        //App.fetchUpc= $('#fetch-upc').val();
         App.readForm();
         console.log('fetchUpc',App.fetchUpc);
 

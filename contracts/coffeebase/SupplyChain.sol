@@ -10,11 +10,11 @@ import "../coffeecore/Ownable.sol";
 //
 contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
     // Define a variable called 'upc' for Universal Product Code (UPC)
-    uint  upc;
+    //uint  upc;
     // Define a variable called 'sku' for Stock Keeping Unit (SKU)
-    uint  sku;
+    uint internal sku;
     // Define a public mapping 'items' that maps the UPC to an Item.
-    mapping (uint => Item) items;
+    mapping (uint => Item) internal items;
     // Define a public mapping 'itemsHistory' that maps the UPC to an array of TxHash, 
     // that track its journey through the supply chain -- to be sent from DApp.
     // To be dis-regarded as per https://medium.com/@andresaaap/architect-a-blockchain-supply-chain-solution-part-b-project-faq-udacity-blockchain-da86496fce55
@@ -33,7 +33,7 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
         Purchased   // 8
     }
 
-    State constant defaultState = State.Harvested;
+    //State constant defaultState = State.Harvested;
 
     // Define a struct 'Item' with the following fields:
     struct Item {
@@ -153,7 +153,7 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
     constructor() public payable Ownable() ConsumerRole() DistributorRole() FarmerRole() RetailerRole() {
       //owner = msg.sender;
       sku = 1;
-      upc = 1;
+      //upc = 1;
     }
 
     // Function that allows you to convert an address into a payable address
@@ -183,7 +183,7 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
     {
         // Add the new item as part of Harvest
         //Item memory new_item ;
-        Item memory new_item = items[_upc];
+        Item memory new_item ; // = items[_upc];
         new_item.sku = sku ;
         new_item.upc = _upc ;
         new_item.ownerID = msg.sender ;
