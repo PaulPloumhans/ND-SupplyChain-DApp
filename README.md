@@ -11,9 +11,10 @@ openzeppelin-solidity : `3.2.0`
 
 # Contract information on Rinkeby network
 
-Address: `0xfD2ebEf9c0193EE0FCB6c6011c72Cc6355fBC817`
+## Address
+`0xfD2ebEf9c0193EE0FCB6c6011c72Cc6355fBC817`
 
-Examples of transactions:
+## Examples of transactions
 
 harvestItemSymbol: `https://rinkeby.etherscan.io/tx/0xeaa58ad040f2946e87d70492dfb02408aeee50de3b4c48a191bff2f83aba7ebc`
 
