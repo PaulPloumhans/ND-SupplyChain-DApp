@@ -3,9 +3,11 @@
 
 
 # Package versions
-*truffle : `v5.1.51`
-*truffle-hdwallet-provider : `1.0.17`
-*openzeppelin-solidity : `3.2.0`
+truffle : `v5.1.51`
+
+truffle-hdwallet-provider : `1.0.17`
+
+openzeppelin-solidity : `3.2.0`
 
 # Contract information on Rinkeby network
 *Address: `0xfD2ebEf9c0193EE0FCB6c6011c72Cc6355fBC817`
